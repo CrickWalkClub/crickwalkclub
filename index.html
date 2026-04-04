@@ -22,7 +22,7 @@
             --header-bg: #141414;
             --danger: #e05555;
             --shadow: 0 4px 24px rgba(0,0,0,0.6);
-            --modal-bg: rgba(0,0,0,0.7);
+            --modal-bg: rgba(0,0,0,0.75);
         }
         :root[data-theme="light"] {
             --bg: #f4f4f0;
@@ -36,7 +36,7 @@
             --text3: #999;
             --accent: #3a7d48;
             --accent-dim: #d4ead9;
-            --header-bg: #1a1a1a;
+            --header-bg: #ffffff;
             --danger: #cc3333;
             --shadow: 0 4px 24px rgba(0,0,0,0.1);
             --modal-bg: rgba(0,0,0,0.4);
@@ -52,11 +52,12 @@
             transition: background 0.3s, color 0.3s;
         }
  
+        /* HEADER */
         header {
             background: var(--header-bg);
-            border-bottom: 1px solid #222;
-            padding: 0 2rem;
-            height: 64px;
+            border-bottom: 1px solid var(--border);
+            padding: 0 1.25rem;
+            height: 56px;
             display: flex;
             align-items: center;
             justify-content: space-between;
@@ -66,39 +67,17 @@
         }
         .logo {
             font-family: 'DM Serif Display', serif;
-            font-size: 1.5rem;
+            font-size: 1.3rem;
             color: var(--accent);
-            letter-spacing: 0.02em;
             display: flex;
             align-items: center;
-            gap: 10px;
+            gap: 8px;
         }
-        .logo-dot { width: 10px; height: 10px; background: var(--accent); border-radius: 50%; }
-        .header-right { display: flex; align-items: center; gap: 0.75rem; }
- 
-        .theme-toggle { display: flex; align-items: center; gap: 8px; font-size: 13px; color: var(--text2); }
-        .toggle-switch {
-            width: 44px; height: 24px;
-            background: var(--surface3);
-            border-radius: 12px;
-            border: 1px solid var(--border2);
-            cursor: pointer;
-            position: relative;
-            transition: background 0.2s;
-        }
-        .toggle-switch::after {
-            content: '';
-            position: absolute;
-            top: 3px; left: 3px;
-            width: 16px; height: 16px;
-            border-radius: 50%;
-            background: var(--accent);
-            transition: transform 0.2s;
-        }
-        [data-theme="light"] .toggle-switch::after { transform: translateX(20px); }
+        .logo-dot { width: 8px; height: 8px; background: var(--accent); border-radius: 50%; flex-shrink: 0; }
+        .header-right { display: flex; align-items: center; gap: 8px; }
  
         .data-btn {
-            padding: 7px 14px;
+            padding: 6px 12px;
             border-radius: 6px;
             border: 1px solid var(--border2);
             background: var(--surface2);
@@ -110,17 +89,41 @@
             white-space: nowrap;
         }
         .data-btn:hover { background: var(--surface3); color: var(--text); }
-        .data-btn.save { border-color: var(--accent); color: var(--accent); background: var(--accent-dim); }
-        .data-btn.save:hover { opacity: 0.8; }
  
+        .theme-toggle { display: flex; align-items: center; gap: 6px; font-size: 12px; color: var(--text2); }
+        .toggle-switch {
+            width: 38px; height: 21px;
+            background: var(--surface3);
+            border-radius: 12px;
+            border: 1px solid var(--border2);
+            cursor: pointer;
+            position: relative;
+            transition: background 0.2s;
+            flex-shrink: 0;
+        }
+        .toggle-switch::after {
+            content: '';
+            position: absolute;
+            top: 2px; left: 2px;
+            width: 15px; height: 15px;
+            border-radius: 50%;
+            background: var(--accent);
+            transition: transform 0.2s;
+        }
+        [data-theme="light"] .toggle-switch::after { transform: translateX(17px); }
+ 
+        /* NAV — bottom on mobile, top on desktop */
         nav {
             background: var(--surface);
             border-bottom: 1px solid var(--border);
             display: flex;
-            padding: 0 2rem;
+            padding: 0 1.25rem;
+            overflow-x: auto;
+            -webkit-overflow-scrolling: touch;
         }
+        nav::-webkit-scrollbar { display: none; }
         .nav-tab {
-            padding: 14px 20px;
+            padding: 13px 16px;
             font-size: 14px;
             font-weight: 500;
             color: var(--text2);
@@ -128,24 +131,26 @@
             border-bottom: 2px solid transparent;
             transition: color 0.2s, border-color 0.2s;
             user-select: none;
+            white-space: nowrap;
+            flex-shrink: 0;
         }
         .nav-tab:hover { color: var(--text); }
         .nav-tab.active { color: var(--accent); border-bottom-color: var(--accent); }
  
-        main { max-width: 960px; margin: 0 auto; padding: 2rem 1.5rem; }
+        main { max-width: 960px; margin: 0 auto; padding: 1.25rem; }
         .section { display: none; }
         .section.active { display: block; }
  
         /* MAP */
         #map {
-            width: 100%; height: 420px;
+            width: 100%; height: 380px;
             border-radius: 10px; overflow: hidden;
             border: 1px solid var(--border);
             margin-bottom: 1rem;
         }
-        .map-controls { display: flex; gap: 10px; margin-bottom: 1rem; flex-wrap: wrap; }
+        .map-controls { display: flex; gap: 8px; margin-bottom: 0.75rem; flex-wrap: wrap; }
         .map-btn {
-            padding: 8px 16px;
+            padding: 7px 13px;
             border-radius: 6px;
             border: 1px solid var(--border2);
             background: var(--surface2);
@@ -160,12 +165,12 @@
         /* CALENDAR */
         .cal-header {
             display: flex; align-items: center; justify-content: space-between;
-            margin-bottom: 1.5rem; flex-wrap: wrap; gap: 1rem;
+            margin-bottom: 1rem; gap: 0.75rem; flex-wrap: wrap;
         }
-        .cal-controls { display: flex; align-items: center; gap: 10px; }
-        .cal-title { font-family: 'DM Serif Display', serif; font-size: 1.6rem; color: var(--text); }
+        .cal-controls { display: flex; align-items: center; gap: 8px; }
+        .cal-title { font-family: 'DM Serif Display', serif; font-size: 1.4rem; color: var(--text); }
         .cal-nav-btn {
-            width: 34px; height: 34px;
+            width: 32px; height: 32px;
             border-radius: 6px;
             border: 1px solid var(--border2);
             background: var(--surface2);
@@ -173,12 +178,10 @@
             font-size: 16px;
             cursor: pointer;
             display: flex; align-items: center; justify-content: center;
-            transition: background 0.15s;
         }
-        .cal-nav-btn:hover { background: var(--surface3); }
-        .cal-selects { display: flex; gap: 8px; }
+        .cal-selects { display: flex; gap: 6px; }
         .cal-selects select {
-            padding: 7px 10px;
+            padding: 6px 8px;
             border-radius: 6px;
             border: 1px solid var(--border2);
             background: var(--surface2);
@@ -194,233 +197,245 @@
             overflow: hidden;
         }
         .cal-day-headers {
-            display: grid;
-            grid-template-columns: repeat(7, 1fr);
+            display: grid; grid-template-columns: repeat(7, 1fr);
             background: var(--surface2);
             border-bottom: 1px solid var(--border);
         }
         .cal-day-header {
-            text-align: center;
-            padding: 10px 0;
-            font-size: 12px;
-            font-weight: 600;
-            color: var(--text2);
-            letter-spacing: 0.05em;
-            text-transform: uppercase;
+            text-align: center; padding: 8px 0;
+            font-size: 11px; font-weight: 600;
+            color: var(--text2); letter-spacing: 0.04em; text-transform: uppercase;
         }
         .cal-days { display: grid; grid-template-columns: repeat(7, 1fr); }
         .cal-cell {
-            min-height: 80px;
+            min-height: 70px;
             border-right: 1px solid var(--border);
             border-bottom: 1px solid var(--border);
-            padding: 6px;
+            padding: 5px;
             cursor: pointer;
             transition: background 0.15s;
         }
         .cal-cell:nth-child(7n) { border-right: none; }
         .cal-cell:hover { background: var(--surface2); }
-        .cal-cell.empty { cursor: default; background: var(--bg); opacity: 0.4; }
+        .cal-cell.empty { cursor: default; background: var(--bg); opacity: 0.35; }
+        .cal-cell.past { opacity: 0.5; }
         .cal-cell.today .day-num {
             background: var(--accent); color: #fff;
             border-radius: 50%;
-            width: 24px; height: 24px;
-            display: flex; align-items: center; justify-content: center;
         }
         .day-num {
-            font-size: 13px; font-weight: 500; color: var(--text2);
-            width: 24px; height: 24px;
+            font-size: 12px; font-weight: 500; color: var(--text2);
+            width: 22px; height: 22px;
             display: flex; align-items: center; justify-content: center;
-            margin-bottom: 4px;
+            margin-bottom: 3px;
         }
+        /* colour coded dots */
         .walk-dot {
-            font-size: 10px;
-            background: var(--accent-dim);
-            color: var(--accent);
-            border-radius: 4px;
-            padding: 2px 5px;
+            font-size: 9px;
+            border-radius: 3px;
+            padding: 1px 4px;
             margin-top: 2px;
-            white-space: nowrap;
-            overflow: hidden;
-            text-overflow: ellipsis;
-            border: 1px solid rgba(109,184,122,0.3);
+            white-space: nowrap; overflow: hidden; text-overflow: ellipsis;
+            border: 1px solid transparent;
         }
-        .walk-dot.expedition { border-color: rgba(100,150,255,0.4); background: rgba(100,150,255,0.1); color: #7090ee; }
+        .walk-dot.local     { background: rgba(109,184,122,0.18); color: #6db87a; border-color: rgba(109,184,122,0.35); }
+        .walk-dot.semi-local { background: rgba(224,160,48,0.18); color: #c98a00; border-color: rgba(224,160,48,0.35); }
+        .walk-dot.expedition { background: rgba(100,150,255,0.18); color: #7090ee; border-color: rgba(100,150,255,0.35); }
  
         /* PLANNED WALKS */
-        .section-title { font-family: 'DM Serif Display', serif; font-size: 1.4rem; color: var(--text); margin-bottom: 1rem; }
+        .section-header { display: flex; align-items: center; justify-content: space-between; margin-bottom: 1rem; }
+        .section-title { font-family: 'DM Serif Display', serif; font-size: 1.3rem; color: var(--text); }
         .walks-list { display: flex; flex-direction: column; gap: 10px; }
+ 
         .walk-card {
             background: var(--surface);
             border: 1px solid var(--border);
-            border-radius: 10px;
-            padding: 16px 20px;
-            display: flex;
-            align-items: flex-start;
-            justify-content: space-between;
-            gap: 1rem;
+            border-radius: 12px;
+            padding: 14px 16px;
             transition: border-color 0.2s;
         }
         .walk-card:hover { border-color: var(--accent); }
         .walk-card.expedition-card { border-left: 3px solid #7090ee; }
-        .walk-card-left { flex: 1; }
-        .walk-date { font-size: 13px; font-weight: 600; color: var(--accent); margin-bottom: 4px; }
+        .walk-card.past-card { opacity: 0.55; }
+ 
+        .walk-card-top { display: flex; align-items: flex-start; justify-content: space-between; gap: 10px; margin-bottom: 10px; }
+        .walk-card-meta { flex: 1; min-width: 0; }
+        .walk-card-actions { display: flex; flex-direction: column; gap: 6px; align-items: flex-end; flex-shrink: 0; }
+ 
+        .walk-date { font-size: 12px; font-weight: 600; color: var(--accent); margin-bottom: 3px; }
         .walk-date.expedition-date { color: #7090ee; }
-        .walk-type-badge {
+        .walk-countdown {
             display: inline-block;
-            padding: 2px 8px;
-            border-radius: 20px;
-            font-size: 11px;
-            font-weight: 600;
-            text-transform: uppercase;
-            letter-spacing: 0.05em;
-            margin-bottom: 6px;
+            font-size: 11px; font-weight: 600;
+            padding: 2px 7px; border-radius: 10px;
+            background: var(--accent-dim); color: var(--accent);
+            margin-bottom: 5px;
+        }
+        .walk-countdown.soon { background: rgba(224,160,48,0.15); color: #c98a00; }
+        .walk-countdown.today { background: rgba(224,100,80,0.15); color: #e05555; }
+        .walk-countdown.past { background: var(--surface2); color: var(--text3); }
+        .walk-type-badge {
+            display: inline-block; padding: 2px 7px;
+            border-radius: 20px; font-size: 10px; font-weight: 600;
+            text-transform: uppercase; letter-spacing: 0.05em; margin-bottom: 5px;
         }
         .badge-local { background: rgba(109,184,122,0.15); color: var(--accent); }
-        .badge-semi-local { background: rgba(255,180,50,0.15); color: #e0a030; }
+        .badge-semi-local { background: rgba(255,180,50,0.15); color: #c98a00; }
         .badge-expedition { background: rgba(100,150,255,0.15); color: #7090ee; }
-        .walk-name { font-size: 15px; font-weight: 500; color: var(--text); margin-bottom: 4px; }
+        .walk-name { font-size: 15px; font-weight: 500; color: var(--text); margin-bottom: 3px; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
         .walk-info { font-size: 13px; color: var(--text2); line-height: 1.5; }
-        .walk-time { font-size: 12px; color: var(--text3); margin-top: 4px; }
-        .delete-btn {
-            background: transparent;
-            border: 1px solid var(--border2);
-            color: var(--danger);
-            padding: 6px 12px;
-            border-radius: 6px;
-            font-size: 12px;
-            cursor: pointer;
+        .walk-time { font-size: 12px; color: var(--text3); margin-top: 3px; }
+ 
+        /* WHO'S COMING */
+        .whos-coming { margin-top: 10px; padding-top: 10px; border-top: 1px solid var(--border); }
+        .whos-coming-title { font-size: 11px; font-weight: 600; text-transform: uppercase; letter-spacing: 0.05em; color: var(--text3); margin-bottom: 8px; }
+        .attendees { display: flex; flex-wrap: wrap; gap: 6px; margin-bottom: 8px; }
+        .attendee-chip {
+            display: flex; align-items: center; gap: 5px;
+            padding: 4px 10px; border-radius: 20px;
+            background: var(--surface2); border: 1px solid var(--border2);
+            font-size: 12px; color: var(--text2);
+        }
+        .attendee-chip .remove-attendee {
+            background: none; border: none; color: var(--text3);
+            cursor: pointer; font-size: 13px; padding: 0; line-height: 1;
+        }
+        .add-attendee-row { display: flex; gap: 6px; }
+        .add-attendee-input {
+            flex: 1; padding: 6px 10px;
+            border-radius: 6px; border: 1px solid var(--border2);
+            background: var(--surface2); color: var(--text);
+            font-size: 13px; font-family: 'DM Sans', sans-serif;
+            min-width: 0;
+        }
+        .add-attendee-input:focus { outline: none; border-color: var(--accent); }
+        .add-attendee-btn {
+            padding: 6px 12px; border-radius: 6px;
+            border: 1px solid var(--accent); background: var(--accent-dim);
+            color: var(--accent); font-size: 13px;
+            font-family: 'DM Sans', sans-serif; cursor: pointer;
             white-space: nowrap;
-            font-family: 'DM Sans', sans-serif;
-            transition: background 0.15s;
-            flex-shrink: 0;
+        }
+ 
+        /* CARD ACTION BUTTONS */
+        .delete-btn {
+            background: transparent; border: 1px solid var(--border2);
+            color: var(--danger); padding: 5px 10px;
+            border-radius: 6px; font-size: 12px; cursor: pointer;
+            font-family: 'DM Sans', sans-serif; transition: background 0.15s;
+            white-space: nowrap;
         }
         .delete-btn:hover { background: rgba(220,80,80,0.1); }
-        .empty-state { text-align: center; padding: 3rem 1rem; color: var(--text3); font-size: 14px; }
+        .whatsapp-btn {
+            display: block; padding: 5px 10px;
+            border-radius: 6px; border: 1px solid #25d366;
+            background: rgba(37,211,102,0.08); color: #1da851;
+            font-size: 12px; font-family: 'DM Sans', sans-serif;
+            cursor: pointer; text-decoration: none;
+            white-space: nowrap; text-align: center;
+            transition: background 0.15s;
+        }
+        .whatsapp-btn:hover { background: rgba(37,211,102,0.18); }
+ 
+        .empty-state { text-align: center; padding: 3rem 1rem; color: var(--text3); font-size: 14px; line-height: 1.7; }
  
         /* MODAL */
         .modal-overlay {
-            display: none;
-            position: fixed; inset: 0;
-            background: var(--modal-bg);
-            z-index: 2000;
-            align-items: center;
-            justify-content: center;
+            display: none; position: fixed; inset: 0;
+            background: var(--modal-bg); z-index: 2000;
+            align-items: flex-end; justify-content: center;
         }
         .modal-overlay.open { display: flex; }
         .modal-box {
             background: var(--surface);
             border: 1px solid var(--border2);
-            border-radius: 14px;
-            padding: 2rem;
-            width: 100%;
-            max-width: 500px;
-            margin: 1rem;
+            border-radius: 16px 16px 0 0;
+            padding: 1.5rem 1.25rem;
+            width: 100%; max-width: 560px;
+            max-height: 92vh; overflow-y: auto;
             box-shadow: var(--shadow);
-            max-height: 90vh;
-            overflow-y: auto;
         }
-        .modal-header {
-            display: flex; justify-content: space-between; align-items: flex-start;
-            margin-bottom: 1.5rem;
-        }
-        .modal-title { font-family: 'DM Serif Display', serif; font-size: 1.3rem; color: var(--text); }
+        .modal-handle { width: 36px; height: 4px; background: var(--border2); border-radius: 2px; margin: 0 auto 1.25rem; }
+        .modal-header { display: flex; justify-content: space-between; align-items: flex-start; margin-bottom: 1.25rem; }
+        .modal-title { font-family: 'DM Serif Display', serif; font-size: 1.25rem; color: var(--text); }
         .modal-date-label { font-size: 13px; color: var(--accent); font-weight: 500; margin-top: 2px; }
         .close-btn {
-            background: var(--surface2);
-            border: 1px solid var(--border2);
-            color: var(--text2);
-            width: 30px; height: 30px;
-            border-radius: 6px;
-            cursor: pointer;
-            font-size: 16px;
-            display: flex; align-items: center; justify-content: center;
-            flex-shrink: 0;
+            background: var(--surface2); border: 1px solid var(--border2);
+            color: var(--text2); width: 28px; height: 28px;
+            border-radius: 6px; cursor: pointer; font-size: 14px;
+            display: flex; align-items: center; justify-content: center; flex-shrink: 0;
         }
-        .close-btn:hover { color: var(--text); }
-        .form-group { margin-bottom: 14px; }
+        .form-group { margin-bottom: 12px; }
         .form-label {
-            display: block;
-            font-size: 12px; font-weight: 600;
+            display: block; font-size: 11px; font-weight: 600;
             text-transform: uppercase; letter-spacing: 0.05em;
-            color: var(--text3);
-            margin-bottom: 6px;
+            color: var(--text3); margin-bottom: 5px;
         }
         .form-control {
-            width: 100%;
-            padding: 10px 12px;
-            border-radius: 8px;
-            border: 1px solid var(--border2);
-            background: var(--surface2);
-            color: var(--text);
-            font-size: 14px;
-            font-family: 'DM Sans', sans-serif;
+            width: 100%; padding: 10px 12px;
+            border-radius: 8px; border: 1px solid var(--border2);
+            background: var(--surface2); color: var(--text);
+            font-size: 15px; font-family: 'DM Sans', sans-serif;
             transition: border-color 0.15s;
+            -webkit-appearance: none;
         }
         .form-control:focus { outline: none; border-color: var(--accent); }
-        textarea.form-control { resize: vertical; min-height: 80px; }
-        .form-row { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; }
+        textarea.form-control { resize: vertical; min-height: 72px; font-size: 14px; }
+        .form-row { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; }
  
         .expedition-fields {
-            display: none;
-            background: rgba(100,150,255,0.06);
+            display: none; background: rgba(100,150,255,0.06);
             border: 1px solid rgba(100,150,255,0.25);
-            border-radius: 8px;
-            padding: 14px;
-            margin-bottom: 14px;
+            border-radius: 8px; padding: 12px; margin-bottom: 12px;
         }
         .expedition-fields.visible { display: block; }
-        .expedition-label {
-            font-size: 12px; font-weight: 600;
-            text-transform: uppercase; letter-spacing: 0.05em;
-            color: #7090ee;
-            margin-bottom: 10px;
-        }
+        .expedition-label { font-size: 11px; font-weight: 600; text-transform: uppercase; letter-spacing: 0.05em; color: #7090ee; margin-bottom: 8px; }
  
-        .modal-footer { display: flex; gap: 10px; justify-content: flex-end; margin-top: 1.5rem; }
+        .modal-footer { display: flex; gap: 8px; justify-content: flex-end; margin-top: 1.25rem; }
         .btn-ghost {
-            padding: 10px 18px; border-radius: 8px;
+            padding: 11px 18px; border-radius: 8px;
             border: 1px solid var(--border2); background: transparent;
-            color: var(--text2); font-size: 14px;
-            font-family: 'DM Sans', sans-serif; cursor: pointer;
+            color: var(--text2); font-size: 14px; font-family: 'DM Sans', sans-serif; cursor: pointer;
         }
         .btn-primary {
-            padding: 10px 22px; border-radius: 8px;
+            flex: 1; padding: 11px 22px; border-radius: 8px;
             border: none; background: var(--accent); color: white;
-            font-size: 14px; font-weight: 500;
-            font-family: 'DM Sans', sans-serif; cursor: pointer;
-            transition: opacity 0.15s;
+            font-size: 15px; font-weight: 500; font-family: 'DM Sans', sans-serif;
+            cursor: pointer; transition: opacity 0.15s;
         }
         .btn-primary:hover { opacity: 0.85; }
  
         /* TOAST */
         .toast {
-            position: fixed; bottom: 2rem; left: 50%; transform: translateX(-50%);
+            position: fixed; bottom: 1.5rem; left: 50%; transform: translateX(-50%);
             background: var(--surface3); border: 1px solid var(--border2);
-            color: var(--text); padding: 10px 20px;
+            color: var(--text); padding: 10px 18px;
             border-radius: 8px; font-size: 13px;
-            opacity: 0; pointer-events: none;
-            transition: opacity 0.3s;
+            opacity: 0; pointer-events: none; transition: opacity 0.3s;
             z-index: 9999; white-space: nowrap;
+            box-shadow: var(--shadow);
         }
         .toast.show { opacity: 1; }
  
-        @media (max-width: 600px) {
-            main { padding: 1rem; }
-            header { padding: 0 1rem; gap: 0.5rem; }
-            .header-right { gap: 0.5rem; }
-            nav { padding: 0 1rem; }
-            .nav-tab { padding: 12px 10px; font-size: 13px; }
-            .form-row { grid-template-columns: 1fr; }
+        /* DESKTOP overrides */
+        @media (min-width: 640px) {
+            header { padding: 0 2rem; height: 60px; }
+            .logo { font-size: 1.5rem; }
+            nav { padding: 0 2rem; }
+            main { padding: 2rem 1.5rem; }
+            #map { height: 420px; }
+            .cal-cell { min-height: 80px; }
+            .modal-overlay { align-items: center; }
+            .modal-box { border-radius: 14px; padding: 2rem; }
+            .modal-handle { display: none; }
+            .walk-card-actions { flex-direction: row; align-items: center; }
         }
     </style>
 </head>
 <body>
  
 <header>
-    <div class="logo">
-        <div class="logo-dot"></div>
-        Walking Club
-    </div>
+    <div class="logo"><div class="logo-dot"></div>Walking Club</div>
     <div class="header-right">
         <button class="data-btn" onclick="loadFromBin(true)" id="refresh-btn">Refresh</button>
         <div class="theme-toggle">
@@ -442,11 +457,11 @@
     <!-- MAP -->
     <div id="section-map" class="section active">
         <div class="map-controls">
-            <button class="map-btn active" onclick="setMapView(51.8523, -3.1447, 13, this)">Home Base</button>
-            <button class="map-btn" onclick="setMapView(51.8835, -3.4378, 11, this)">Brecon Beacons</button>
-            <button class="map-btn" onclick="setMapView(51.7200, -3.4000, 12, this)">Rhondda Valley</button>
-            <button class="map-btn" onclick="setMapView(51.9600, -3.1500, 11, this)">Black Mountains</button>
-            <button class="map-btn" onclick="setMapView(51.6500, -3.9500, 11, this)">Gower Peninsula</button>
+            <button class="map-btn active" onclick="setMapView(51.8523,-3.1447,13,this)">Home Base</button>
+            <button class="map-btn" onclick="setMapView(51.8835,-3.4378,11,this)">Brecon Beacons</button>
+            <button class="map-btn" onclick="setMapView(51.7200,-3.4000,12,this)">Rhondda Valley</button>
+            <button class="map-btn" onclick="setMapView(51.9600,-3.1500,11,this)">Black Mountains</button>
+            <button class="map-btn" onclick="setMapView(51.6500,-3.9500,11,this)">Gower Peninsula</button>
         </div>
         <div id="map"></div>
     </div>
@@ -473,10 +488,10 @@
         </div>
         <div class="calendar-grid">
             <div class="cal-day-headers">
-                <div class="cal-day-header">Sun</div><div class="cal-day-header">Mon</div>
-                <div class="cal-day-header">Tue</div><div class="cal-day-header">Wed</div>
-                <div class="cal-day-header">Thu</div><div class="cal-day-header">Fri</div>
-                <div class="cal-day-header">Sat</div>
+                <div class="cal-day-header">Su</div><div class="cal-day-header">Mo</div>
+                <div class="cal-day-header">Tu</div><div class="cal-day-header">We</div>
+                <div class="cal-day-header">Th</div><div class="cal-day-header">Fr</div>
+                <div class="cal-day-header">Sa</div>
             </div>
             <div class="cal-days" id="cal-days"></div>
         </div>
@@ -484,9 +499,9 @@
  
     <!-- PLANNED WALKS -->
     <div id="section-walks" class="section">
-        <div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:1.5rem;">
+        <div class="section-header">
             <h2 class="section-title">Planned Walks</h2>
-            <button class="btn-primary" onclick="openModal(null)">+ Add Walk</button>
+            <button class="btn-primary" style="flex:none;padding:8px 16px;font-size:14px;" onclick="openModal(null)">+ Add Walk</button>
         </div>
         <div class="walks-list" id="walks-list"></div>
     </div>
@@ -496,6 +511,7 @@
 <!-- WALK MODAL -->
 <div class="modal-overlay" id="walk-modal">
     <div class="modal-box">
+        <div class="modal-handle"></div>
         <div class="modal-header">
             <div>
                 <div class="modal-title">Plan a Walk</div>
@@ -508,7 +524,6 @@
             <label class="form-label">Walk name / destination</label>
             <input type="text" class="form-control" id="f-name" placeholder="e.g. Pen y Fan summit" />
         </div>
- 
         <div class="form-row">
             <div class="form-group">
                 <label class="form-label">Walk type</label>
@@ -523,7 +538,6 @@
                 <input type="text" class="form-control" id="f-meet" placeholder="e.g. Car park, A470" />
             </div>
         </div>
- 
         <div class="form-row">
             <div class="form-group">
                 <label class="form-label">Start date</label>
@@ -534,7 +548,6 @@
                 <input type="time" class="form-control" id="f-time" value="09:00" />
             </div>
         </div>
- 
         <div class="expedition-fields" id="expedition-fields">
             <div class="expedition-label">Multi-day expedition</div>
             <div class="form-row">
@@ -543,17 +556,15 @@
                     <input type="date" class="form-control" id="f-end-date" />
                 </div>
                 <div class="form-group" style="margin-bottom:0;">
-                    <label class="form-label">Estimated end time</label>
+                    <label class="form-label">Est. end time</label>
                     <input type="time" class="form-control" id="f-end-time" value="17:00" />
                 </div>
             </div>
         </div>
- 
         <div class="form-group">
             <label class="form-label">Notes</label>
-            <textarea class="form-control" id="f-notes" placeholder="What to bring, difficulty, route info, overnight stays..."></textarea>
+            <textarea class="form-control" id="f-notes" placeholder="What to bring, difficulty, route info..."></textarea>
         </div>
- 
         <div class="modal-footer">
             <button class="btn-ghost" onclick="closeModal()">Cancel</button>
             <button class="btn-primary" onclick="saveWalk()">Save Walk</button>
@@ -572,16 +583,12 @@ function toggleTheme() {
     html.setAttribute('data-theme', next);
     localStorage.setItem('wc-theme', next);
 }
-(function() {
-    const saved = localStorage.getItem('wc-theme');
-    if (saved) document.documentElement.setAttribute('data-theme', saved);
-})();
+(function(){ const s = localStorage.getItem('wc-theme'); if(s) document.documentElement.setAttribute('data-theme', s); })();
  
 // TOAST
 function showToast(msg) {
     const t = document.getElementById('toast');
-    t.textContent = msg;
-    t.classList.add('show');
+    t.textContent = msg; t.classList.add('show');
     setTimeout(() => t.classList.remove('show'), 2800);
 }
  
@@ -599,9 +606,7 @@ var map = L.map('map').setView([51.8523, -3.1447], 13);
 L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
     attribution: '&copy; OpenStreetMap contributors'
 }).addTo(map);
-L.marker([51.8523, -3.1447]).addTo(map)
-    .bindPopup('<b>Walking Club Base</b><br>Meet up here!').openPopup();
- 
+L.marker([51.8523, -3.1447]).addTo(map).bindPopup('<b>Walking Club Base</b><br>Meet up here!').openPopup();
 function setMapView(lat, lng, zoom, btn) {
     map.setView([lat, lng], zoom);
     document.querySelectorAll('.map-btn').forEach(b => b.classList.remove('active'));
@@ -617,8 +622,7 @@ function populateYearSelect() {
     const sel = document.getElementById('year-select');
     for (let y = 2025; y <= 2050; y++) {
         const o = document.createElement('option');
-        o.value = y; o.textContent = y;
-        sel.appendChild(o);
+        o.value = y; o.textContent = y; sel.appendChild(o);
     }
     sel.value = curYear;
     document.getElementById('month-select').value = curMonth;
@@ -643,7 +647,7 @@ function renderCalendar() {
     document.getElementById('cal-title').textContent = monthNames[curMonth] + ' ' + curYear;
     const firstDay = new Date(curYear, curMonth, 1).getDay();
     const daysInMonth = new Date(curYear, curMonth + 1, 0).getDate();
-    const today = new Date();
+    const today = new Date(); today.setHours(0,0,0,0);
     const container = document.getElementById('cal-days');
     container.innerHTML = '';
  
@@ -652,27 +656,23 @@ function renderCalendar() {
         cell.className = 'cal-cell empty';
         container.appendChild(cell);
     }
- 
     for (let d = 1; d <= daysInMonth; d++) {
         const cell = document.createElement('div');
-        cell.className = 'cal-cell';
         const dateKey = `${curYear}-${String(curMonth+1).padStart(2,'0')}-${String(d).padStart(2,'0')}`;
- 
-        if (d === today.getDate() && curMonth === today.getMonth() && curYear === today.getFullYear()) {
-            cell.classList.add('today');
-        }
+        const cellDate = new Date(curYear, curMonth, d);
+        cell.className = 'cal-cell' + (cellDate < today ? ' past' : '');
+        if (cellDate.getTime() === today.getTime()) cell.classList.add('today');
  
         const numDiv = document.createElement('div');
         numDiv.className = 'day-num';
         numDiv.textContent = d;
         cell.appendChild(numDiv);
  
-        // Show walks — including expeditions that span this day
         walksData.forEach(w => {
             const endDate = w.endDate || w.date;
             if (dateKey >= w.date && dateKey <= endDate) {
                 const dot = document.createElement('div');
-                dot.className = 'walk-dot' + (w.type === 'expedition' ? ' expedition' : '');
+                dot.className = `walk-dot ${w.type}`;
                 dot.textContent = w.name || w.type;
                 cell.appendChild(dot);
             }
@@ -683,55 +683,58 @@ function renderCalendar() {
     }
 }
  
-// -------------------------------------------------------
-// JSONBIN CONFIG — paste your values here after signing up
-// at https://jsonbin.io
-// 1. Create a free account
-// 2. Go to Bins → Create a new bin with content: {"walks":[]}
-// 3. Copy the Bin ID from the bin URL
-// 4. Go to API Keys → create a key, copy it
-// -------------------------------------------------------
+// JSONBIN
 const BIN_ID  = '69d170af856a682189fd2cd0';
 const API_KEY = '$2a$10$XKkwAdWOvXL56wbssqK28.q0ZljsW7pug3F8SlwaNe/9PJ6Xp58CW';
 const BIN_URL = `https://api.jsonbin.io/v3/b/${BIN_ID}`;
- 
 let walksData = [];
  
 async function loadFromBin(showMsg) {
     const btn = document.getElementById('refresh-btn');
-    btn.textContent = 'Loading...';
-    btn.disabled = true;
+    btn.textContent = 'Loading...'; btn.disabled = true;
     try {
-        const res = await fetch(BIN_URL + '/latest', {
-            headers: { 'X-Master-Key': API_KEY }
-        });
+        const res = await fetch(BIN_URL + '/latest', { headers: { 'X-Master-Key': API_KEY } });
         if (!res.ok) throw new Error(res.status);
         const json = await res.json();
         walksData = json.record.walks || [];
-        renderCalendar();
-        renderWalksList();
+        renderCalendar(); renderWalksList();
         if (showMsg) showToast(`Refreshed — ${walksData.length} walk${walksData.length !== 1 ? 's' : ''} loaded.`);
-    } catch(e) {
-        showToast('Could not load data. Check your Bin ID and API key.');
-    }
-    btn.textContent = 'Refresh';
-    btn.disabled = false;
+    } catch(e) { showToast('Could not load data. Check connection.'); }
+    btn.textContent = 'Refresh'; btn.disabled = false;
 }
  
 async function saveToBin() {
     try {
         const res = await fetch(BIN_URL, {
             method: 'PUT',
-            headers: {
-                'Content-Type': 'application/json',
-                'X-Master-Key': API_KEY
-            },
+            headers: { 'Content-Type': 'application/json', 'X-Master-Key': API_KEY },
             body: JSON.stringify({ walks: walksData })
         });
         if (!res.ok) throw new Error(res.status);
-    } catch(e) {
-        showToast('Could not save to cloud. Check your API key.');
-    }
+    } catch(e) { showToast('Could not save. Check connection.'); }
+}
+ 
+// COUNTDOWN
+function getCountdown(dateKey) {
+    const today = new Date(); today.setHours(0,0,0,0);
+    const [y,m,d] = dateKey.split('-').map(Number);
+    const walkDate = new Date(y, m-1, d);
+    const diff = Math.round((walkDate - today) / 86400000);
+    if (diff < 0) return { label: 'Past', cls: 'past' };
+    if (diff === 0) return { label: 'Today!', cls: 'today' };
+    if (diff === 1) return { label: 'Tomorrow', cls: 'soon' };
+    if (diff <= 7) return { label: `In ${diff} days`, cls: 'soon' };
+    return { label: `In ${diff} days`, cls: '' };
+}
+ 
+// WHATSAPP
+function buildWhatsAppLink(w) {
+    const dateStr = formatDate(w.date);
+    const name = w.name || 'the walk';
+    let msg = `I'm in for ${name} on ${dateStr}!`;
+    if (w.meet) msg += ` Meet at: ${w.meet}`;
+    if (w.time) msg += `, ${w.time}`;
+    return `https://wa.me/?text=${encodeURIComponent(msg)}`;
 }
  
 // MODAL
@@ -740,10 +743,8 @@ function onTypeChange() {
     const expFields = document.getElementById('expedition-fields');
     if (type === 'expedition') {
         expFields.classList.add('visible');
-        const startDate = document.getElementById('f-date').value;
-        if (!document.getElementById('f-end-date').value && startDate) {
-            document.getElementById('f-end-date').value = startDate;
-        }
+        const sd = document.getElementById('f-date').value;
+        if (!document.getElementById('f-end-date').value && sd) document.getElementById('f-end-date').value = sd;
     } else {
         expFields.classList.remove('visible');
     }
@@ -763,9 +764,7 @@ function openModal(dateKey) {
     document.getElementById('walk-modal').classList.add('open');
 }
  
-function closeModal() {
-    document.getElementById('walk-modal').classList.remove('open');
-}
+function closeModal() { document.getElementById('walk-modal').classList.remove('open'); }
  
 function formatDate(dateKey) {
     if (!dateKey) return '';
@@ -774,67 +773,107 @@ function formatDate(dateKey) {
 }
  
 async function saveWalk() {
-    const name = document.getElementById('f-name').value.trim();
-    const date = document.getElementById('f-date').value;
-    const time = document.getElementById('f-time').value;
-    const type = document.getElementById('f-type').value;
-    const meet = document.getElementById('f-meet').value.trim();
+    const name  = document.getElementById('f-name').value.trim();
+    const date  = document.getElementById('f-date').value;
+    const time  = document.getElementById('f-time').value;
+    const type  = document.getElementById('f-type').value;
+    const meet  = document.getElementById('f-meet').value.trim();
     const notes = document.getElementById('f-notes').value.trim();
     const endDate = type === 'expedition' ? document.getElementById('f-end-date').value : date;
     const endTime = type === 'expedition' ? document.getElementById('f-end-time').value : '';
- 
     if (!date) { showToast('Please pick a start date.'); return; }
-    if (type === 'expedition' && endDate && endDate < date) {
-        showToast('End date must be on or after the start date.');
-        return;
-    }
- 
-    walksData.push({ id: Date.now(), name, date, time, type, meet, notes, endDate, endTime });
+    if (type === 'expedition' && endDate && endDate < date) { showToast('End date must be after start date.'); return; }
+    walksData.push({ id: Date.now(), name, date, time, type, meet, notes, endDate, endTime, attendees: [] });
     walksData.sort((a, b) => a.date.localeCompare(b.date));
     await saveToBin();
-    closeModal();
-    renderCalendar();
-    renderWalksList();
+    closeModal(); renderCalendar(); renderWalksList();
     showToast('Walk saved.');
 }
  
 async function deleteWalk(id) {
     walksData = walksData.filter(w => w.id !== id);
-    await saveToBin();
-    renderCalendar();
-    renderWalksList();
+    await saveToBin(); renderCalendar(); renderWalksList();
     showToast('Walk deleted.');
+}
+ 
+async function addAttendee(walkId) {
+    const input = document.getElementById(`att-input-${walkId}`);
+    const name = input.value.trim();
+    if (!name) return;
+    const walk = walksData.find(w => w.id === walkId);
+    if (!walk) return;
+    if (!walk.attendees) walk.attendees = [];
+    if (walk.attendees.includes(name)) { showToast('Already added.'); return; }
+    walk.attendees.push(name);
+    await saveToBin(); renderWalksList();
+}
+ 
+async function removeAttendee(walkId, name) {
+    const walk = walksData.find(w => w.id === walkId);
+    if (!walk) return;
+    walk.attendees = (walk.attendees || []).filter(a => a !== name);
+    await saveToBin(); renderWalksList();
 }
  
 function renderWalksList() {
     const container = document.getElementById('walks-list');
-    if (walksData.length === 0) {
-        container.innerHTML = '<div class="empty-state">No walks planned yet.<br>Click a date on the calendar or use the button above to add one.</div>';
+    const today = new Date(); today.setHours(0,0,0,0);
+ 
+    // Sort: upcoming first, then past
+    const upcoming = walksData.filter(w => new Date(w.date) >= today);
+    const past = walksData.filter(w => new Date(w.date) < today);
+    const sorted = [...upcoming, ...past];
+ 
+    if (sorted.length === 0) {
+        container.innerHTML = '<div class="empty-state">No walks planned yet.<br>Click a date on the calendar or tap the button above.</div>';
         return;
     }
     container.innerHTML = '';
-    walksData.forEach(w => {
+    sorted.forEach(w => {
         const badgeClass = w.type === 'local' ? 'badge-local' : w.type === 'semi-local' ? 'badge-semi-local' : 'badge-expedition';
         const isExp = w.type === 'expedition';
+        const isPast = new Date(w.date) < today;
         const dateDisplay = isExp && w.endDate && w.endDate !== w.date
             ? `${formatDate(w.date)} &ndash; ${formatDate(w.endDate)}`
             : formatDate(w.date);
         const timeDisplay = isExp && w.endTime
             ? `Depart ${w.time} &mdash; Est. return ${w.endTime}`
             : w.time ? w.time : '';
+        const countdown = getCountdown(w.date);
+        const attendees = w.attendees || [];
  
         const card = document.createElement('div');
-        card.className = 'walk-card' + (isExp ? ' expedition-card' : '');
+        card.className = 'walk-card' + (isExp ? ' expedition-card' : '') + (isPast ? ' past-card' : '');
         card.innerHTML = `
-            <div class="walk-card-left">
-                <div class="walk-date ${isExp ? 'expedition-date' : ''}">${dateDisplay}</div>
-                <span class="walk-type-badge ${badgeClass}">${w.type}</span>
-                ${w.name ? `<div class="walk-name">${w.name}</div>` : ''}
-                ${w.meet ? `<div class="walk-info">Meet: ${w.meet}</div>` : ''}
-                ${w.notes ? `<div class="walk-info" style="margin-top:4px;">${w.notes}</div>` : ''}
-                ${timeDisplay ? `<div class="walk-time">${timeDisplay}</div>` : ''}
+            <div class="walk-card-top">
+                <div class="walk-card-meta">
+                    <div class="walk-date ${isExp ? 'expedition-date' : ''}">${dateDisplay}</div>
+                    <span class="walk-countdown ${countdown.cls}">${countdown.label}</span>
+                    <span class="walk-type-badge ${badgeClass}">${w.type}</span>
+                    ${w.name ? `<div class="walk-name">${w.name}</div>` : ''}
+                    ${w.meet ? `<div class="walk-info">Meet: ${w.meet}</div>` : ''}
+                    ${w.notes ? `<div class="walk-info">${w.notes}</div>` : ''}
+                    ${timeDisplay ? `<div class="walk-time">${timeDisplay}</div>` : ''}
+                </div>
+                <div class="walk-card-actions">
+                    <button class="delete-btn" onclick="deleteWalk(${w.id})">Delete</button>
+                </div>
             </div>
-            <button class="delete-btn" onclick="deleteWalk(${w.id})">Delete</button>
+            <div class="whos-coming">
+                <div class="whos-coming-title">Who's coming (${attendees.length})</div>
+                <div class="attendees" id="att-list-${w.id}">
+                    ${attendees.map(a => `
+                        <div class="attendee-chip">
+                            ${a}
+                            <button class="remove-attendee" onclick="removeAttendee(${w.id}, '${a.replace(/'/g,"\\'")}')">&#x2715;</button>
+                        </div>`).join('')}
+                </div>
+                <div class="add-attendee-row">
+                    <input class="add-attendee-input" id="att-input-${w.id}" type="text" placeholder="Your name..."
+                        onkeydown="if(event.key==='Enter') addAttendee(${w.id})" />
+                    <button class="add-attendee-btn" onclick="addAttendee(${w.id})">I'm in</button>
+                </div>
+            </div>
         `;
         container.appendChild(card);
     });
